@@ -57,8 +57,14 @@ document.addEventListener("DOMContentLoaded", function () {
           alert(data.error);
         } else {
           localStorage.setItem("userRole", data.role);
-          updateUIForAuthenticatedUser(data.role);
-          closeModal();
+          if (data.role === "user") {
+            window.location.href = "user.html";
+          } else if (data.role === "agent") {
+            window.location.href = "agent.html";
+          } else {
+            // If no role or unrecognized role, potentially log out or handle differently
+            logout();
+          }
         }
       })
       .catch((error) => {
@@ -76,36 +82,31 @@ document.addEventListener("DOMContentLoaded", function () {
     const userRole = localStorage.getItem("userRole");
     if (userRole) {
       updateUIForAuthenticatedUser(userRole);
+    } else {
+      updateUIForUnauthenticatedUser();
     }
   }
 
   function updateUIForAuthenticatedUser(role) {
     loginButton.textContent = "Logout";
-    submitTicketButton.textContent = "go to tickets";
-    submitTicketButton.onclick = function () {
-      window.location.href = "user.html";
-    };
-    const currentPage = window.location.pathname.split("/").pop();
 
     if (role === "user") {
-      if (currentPage == "user.html") {
-        window.location.href = "homePage.html";
-      }
+      submitTicketButton.textContent = "Go to Tickets";
+      submitTicketButton.onclick = function () {
+        window.location.href = "user.html";
+      };
     } else if (role === "agent") {
-      if (currentPage == "agent.html") {
-        window.location.href = "homePage.html";
-      }
+      submitTicketButton.textContent = "Go to Dashboard";
+      submitTicketButton.onclick = function () {
+        window.location.href = "agent.html";
+      };
     } else {
       // If no role or unrecognized role, potentially log out or handle differently
       logout();
     }
   }
-
   function updateUIForUnauthenticatedUser() {
     loginButton.textContent = "Login to your account";
-    submitTicketButton.textContent = "Submit a New Ticket";
-    submitTicketButton.onclick = function () {
-      openModal();
-    };
+    submitTicketButton.classList.add("hidden");
   }
 });
