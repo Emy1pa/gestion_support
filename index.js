@@ -78,9 +78,9 @@ app.post("/tickets", (req, res) => {
   const values = [
     req.body.title,
     req.body.description,
-    req.body.status || "open", // Default status if not provided
+    req.body.status || "open",
     req.body.user_id,
-    req.body.agent_id || null, // Agent might not be assigned immediately
+    req.body.agent_id || null,
   ];
   db.query(q, values, (err, data) => {
     if (err) return res.status(500).json(err);

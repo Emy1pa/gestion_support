@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
-  // Update login button click handler
+  // Update login button
   loginButton.onclick = function () {
     if (loginButton.textContent === "Logout") {
       logout();
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
-  // Add login form submission handler
+  // Add login form submission
   const loginForm = loginModal.querySelector("form");
   if (loginForm) {
     loginForm.onsubmit = function (e) {
@@ -101,7 +101,6 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.href = "agent.html";
       };
     } else {
-      // If no role or unrecognized role, potentially log out or handle differently
       logout();
     }
   }

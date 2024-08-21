@@ -181,8 +181,8 @@ function closeTicketModal() {
 submitTicketBtn.addEventListener("click", () => {
   const title = document.getElementById("title").value;
   const description = document.getElementById("description").value;
-  const userId = 1; // Replace with actual user ID
-  const agentId = 1; // Static agent ID as per your requirement
+  const userId = 1;
+  const agentId = 1;
 
   axios
     .post("http://localhost:8800/tickets", {
@@ -194,7 +194,7 @@ submitTicketBtn.addEventListener("click", () => {
     })
     .then((response) => {
       closeTicketModal();
-      // Add the new ticket to the table immediately
+
       addTicketToTable(response.data);
     })
     .catch((error) => console.error("Error creating ticket:", error));
@@ -269,8 +269,8 @@ function deleteTicket(id) {
 document.addEventListener("DOMContentLoaded", function () {
   const homeBtn = document.getElementById("homeBtn");
   homeBtn.addEventListener("click", function (event) {
-    event.preventDefault(); // Prevent any default form submission or link action
-    window.location.href = "homePage.html"; // Navigate to the home page
+    event.preventDefault();
+    window.location.href = "homePage.html";
   });
 });
 

@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const homeBtn = document.getElementById("homeBtn");
   homeBtn.addEventListener("click", function (event) {
     event.preventDefault();
-    window.location.href = "homePage.html"; // Navigate to the home page
+    window.location.href = "homePage.html";
   });
 });
 fetchAgentTickets();
